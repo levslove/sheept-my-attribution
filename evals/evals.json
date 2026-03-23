@@ -1,0 +1,49 @@
+{
+  "name": "my-attribution Skill Evals",
+  "version": "1.0",
+  "evals": [
+    {
+      "id": "eval-my-attribution-001",
+      "type": "positive",
+      "description": "User asks to root \u2192 skill triggers and calls GET /",
+      "input": "Show me the root from my-attribution",
+      "expected_behavior": "Agent runs: bash scripts/my-attribution.sh root \u2014 returns valid JSON from GET /",
+      "endpoint": "GET /",
+      "command": "bash scripts/my-attribution.sh root"
+    },
+    {
+      "id": "eval-my-attribution-002",
+      "type": "positive",
+      "description": "User asks to health \u2192 skill triggers and calls GET /v1/health",
+      "input": "Show me the health from my-attribution",
+      "expected_behavior": "Agent runs: bash scripts/my-attribution.sh health \u2014 returns valid JSON from GET /v1/health",
+      "endpoint": "GET /v1/health",
+      "command": "bash scripts/my-attribution.sh health"
+    },
+    {
+      "id": "eval-my-attribution-003",
+      "type": "positive",
+      "description": "User asks to create session \u2192 skill triggers and calls POST /v1/sessions",
+      "input": "Create a new session in my-attribution",
+      "expected_behavior": "Agent runs: bash scripts/my-attribution.sh create-session \u2014 returns valid JSON from POST /v1/sessions",
+      "endpoint": "POST /v1/sessions",
+      "command": "bash scripts/my-attribution.sh create-session"
+    },
+    {
+      "id": "eval-my-attribution-004",
+      "type": "negative",
+      "description": "General question about my-attribution should NOT trigger this skill",
+      "input": "What is my-attribution? Tell me about it.",
+      "expected_behavior": "Agent answers from general knowledge \u2014 does NOT run the skill script or call the API",
+      "should_trigger": false
+    },
+    {
+      "id": "eval-my-attribution-005",
+      "type": "negative",
+      "description": "Unrelated request should NOT trigger this skill",
+      "input": "What's the weather in Tokyo?",
+      "expected_behavior": "Agent uses weather/search tools \u2014 does NOT invoke my-attribution.sh",
+      "should_trigger": false
+    }
+  ]
+}
